@@ -1,0 +1,374 @@
+<html>
+    
+<head>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+            //TestDownload();
+            
+        var start = 0;
+        var end = 0;
+        var binfile = '';
+        var sum = 0;
+        
+        var sources = ['256.jpg',
+        					  '256.jpg',
+        					  '512.jpg'
+        					 ];
+
+		 function Start() {
+
+		 	sum = 0;
+		 	$('.progress-bar-striped').addClass('active');
+		 	$('#dlspeed').removeClass('hidden');
+		 	TestDownloadNew(0);
+		 }
+
+		var host_maps = [ "http://us.testinternetspeed.link/",
+							   ""
+							 ];
+		var ping_sources = ["http://us.testinternetspeed.link/ping.html",
+								  "http://de.testinternetspeed.link/ping.php"
+								 ];
+		var server_loc = ['USA', 'Germany'];
+		var ping_result = [0,0];
+		var max_pos = 0;
+		
+		function PingTest(pos) {
+						
+		            start = new Date().getTime();
+		            
+		            $.ajax({
+		                type: "GET",
+		                url: ping_sources[pos],
+		                success: function(msg) {
+
+								  var msg_r = "<strong>PING RESULT FOR "+server_loc[pos]+" SERVER FAILED!</strong><br>";
+		                   
+		                    if(msg.indexOf("OK")!=-1)
+		                    {
+		                    		end = new Date().getTime();
+		                    		speed = (end - start) / 1000;
+		                    		ping_result[pos] = speed;
+		                    		if (ping_result[pos]<ping_result[max_pos]) {
+		                    			max_pos = pos;
+		                    		}
+		                    		msg_r = "<h6>PING RESULT FOR <strong>"+server_loc[pos]+"</strong> TOOK <strong>"+String(speed)+"</strong> SECONDS</h6>";	
+		                    }
+		                    
+		                    $('#ping_info').append(msg_r);
+		                },
+		                complete: function(xhr, textStatus) {
+		                    
+		                    if ( pos+1 < ping_sources.length  ) {
+		                    		PingTest(pos+1);
+		                    }else {
+		                    		
+		                    		$('#ping_info').append("Ping Test Completed! Using fast server: "+server_loc[max_pos]);
+		                    		Start();      		
+		                    }
+
+		                }
+		            });
+		        }        
+
+
+
+		
+		function TestDownloadNew(pos) {
+		
+						if (pos>sources.length) {
+							return;
+						}
+						
+		            start = new Date().getTime();
+		            
+		            $.ajax({
+		                type: "GET",
+		                url: host_maps[max_pos] + sources[pos] + "?id=" + start,
+		                success: function(msg) {
+		                    binfile = msg;
+		                    end = new Date().getTime();
+		                    diff = (end - start) / 1000;
+		                    bytes = msg.length;
+		                    speed = (bytes / diff) / 1024 / 1024 * 8;
+		                    speed = Math.round(speed*100)/100;
+		                    sum = sum + speed;
+		                    $('#dlspeed').html('<b>' + speed + ' Mb/s </b>');
+		                    $('#dlbar').css('width', Math.floor(speed * 30)+'px');
+
+		   					  $('.dlspeed_bar').html('<b>' + speed + ' Mb/s</b>');
+		   					  $('.progress-bar').css('width', Math.floor(speed * 60)+'px');
+		                },
+		                complete: function(xhr, textStatus) {
+		                    
+		                    if ( pos+1 < sources.length  ) {
+		                    		TestDownloadNew(pos+1);
+		                    }else {
+		                    		sum = Math.round((sum/4)*100)/100;
+		 								$('#dlspeed').html('<b> Average: ' + sum + ' Mb/s </b>');
+		   							$('#dlbar').css('width', Math.floor(sum * 30)+'px');
+		   							
+		   							$('.dlspeed_bar').html('<b>' + sum + ' Mb/s</b>');
+		   							$('.progress-bar').css('width', Math.floor(sum * 60)+'px');
+		   							$('.progress-bar-striped').removeClass('active');
+		   							//$('#start_test').removeClass('hidden');
+
+		                    		ping_result = [0,0];
+										max_pos = 0;		   							
+		   							
+		   							TestUpload();
+		                    }
+
+		                }
+		            });
+		        }        
+
+        
+        function TestUpload() {
+            start = new Date().getTime();
+            
+            $.ajax({
+                type: "POST",
+                url: host_maps[max_pos] + "post.php?id=" + start,
+                data: binfile,
+                success: function(msg) {
+                    end = new Date().getTime();
+                    diff = (end - start) / 1000;
+                    bytes = binfile.length;
+                    speed = (bytes / diff) / 1024 / 1024 * 8;
+                    speed = Math.round(speed*100)/100;
+                    $('#ulspeed').html('<b>' + speed + ' Mb/s </b>');
+                    $('#ulbar').css('width', Math.floor(speed * 60)+'px');
+						  $('#start_test').removeClass('hidden');
+                    
+                }    
+            });
+        }
+        
+            $('#start_test').click(
+					function () {
+						$('#start_test').addClass('hidden');						
+						$("#ping_info").html("<hr><h3>Ping Info:</h3>");
+						PingTest(0);
+						//Start();	
+					});
+
+        });
+    </script>
+
+<style>
+	
+	.bs-example{
+			width: 300px;
+	}
+
+	.hidden{ display: none; }
+
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53022084-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<title> Test Internet Speed</title>
+
+</head>     
+
+<body>
+
+
+
+<div class="container-fluid" id="starttest" >
+
+<h1>Test Internet Speed Free!</h1>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12"> 
+
+    <p>
+        Download speed:
+		<div class="bs-example" >
+
+			<span id="dlspeed" class="hidden" ><img src="busy.gif"></span><br>		    
+ 
+		    <div class="progress" >
+		      <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+		      </div>
+					<span class="dlspeed_bar"> <b>? Mb/s</b> </span>
+		      </div>
+		    <div style="float: right;margin-top: -15px;margin-bottom: 10px;" >10 Mb/s</div>
+		</div>
+    </p>
+
+	<hr style="clear: both;" >
+	
+	    <p>
+	        Upload speed:
+	        <div class="bs-example" >
+	        <span id="ulspeed"><img src="busy.gif"></span><br>
+	        <img src="bar.gif" width="300" height="10">
+				<div style="float: right;" >5 Mb/s</div>
+			  </div>
+	    </p>
+	<br>
+	<button type="button" class="btn btn-default" id="start_test"  >Start Test</button>
+	
+	
+	<div id="ping_info" >
+	</div>
+  
+  </div>
+</div>
+
+<br>
+<div class="row" id="testtips" >
+  <div class="col-xs-12 col-md-12"> 
+	
+	<h3>Test Tips</h3>
+	<p>
+	Test your Internet connection speed free of costs, by simply click on the start test button. 
+	The Internet speed is affected by other softwares that you have installed on your computer or device. 
+	Is recommended that you close other programs that can use Internet, before test your internet speed. 
+	If not exist more softwares that consuming your internet speed, you will get a more accurate results; 
+	otherwise you will get only your current available and unused internet bandwidth. 
+	Please update your web browser to a new version if you get any error while testing your internet speed.
+	</p>
+	</div>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MovBig -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-1432664808275238"
+     data-ad-slot="2697165906"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<div class="row" id="howitworks" >
+	<div class="col-xs-12 col-md-12"> 
+	<h3>How It Works</h3>
+	
+	<p>
+	Every time you initialize the test by a click on the "Start Test" button, a ping tests is done to detect the fast servers depending on response time. 
+	After select the server with the most small ping time, then the internet speed test is initialized, and a set of files are downloaded and uploaded 
+	from your computer or device. 
+	The final download speed is measured as the average of all the independent download speed tests done.
+	
+	</p>
+	</div>
+</div>
+
+
+<div class="row" id="androidapp" >
+	<div class="col-xs-12 col-md-12"> 
+	<h3>Android App</h3>
+	
+	<p>
+	You can also perform the internet speed test on your android device free of costs, and measure how fast can be internet on your mobile device. <a href="https://play.google.com/store/apps/details?id=com.wInternetSpeedTestFree" >Download the app here</a> 
+	from google app store or just scan the QR code using your mobile QR code scanner.
+To start the test on your mobile device, locate the “Start Test” button and click it.
+	</p>
+
+<img src="qrcode.png" alt="Internet Speed Test, free app QR code.">
+	</div>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MovBig -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-1432664808275238"
+     data-ad-slot="2697165906"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<div class="row" id="terms" >
+	<div class="col-xs-12 col-md-12"> 
+	<h3> Terms &amp; Conditions</h3>
+	
+	<p>
+	You can use all our services free to test your internet speed free of costs.
+	</p>
+	</div>
+</div>
+
+<br>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MovBig -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-1432664808275238"
+     data-ad-slot="2697165906"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+
+
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" style="float: left;"  data-toggle="collapse" data-target="#footer-body">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>    
+            </div>
+            <div class="navbar-collapse collapse" id="footer-body">
+                <ul class="nav navbar-nav">
+						  <li><a href="#starttest">Start Test</a></li>                    
+                    <li><a href="#testtips">Test Tips</a></li>
+                    <li><a href="#howitworks">How It Works</a></li>
+                    <li> <a href="#androidapp" >Android App</a> </li>
+                    <li><a href="#terms">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+<Files devel_def.htm>
+        Order deny,allow
+        Deny from all
+</Files>
