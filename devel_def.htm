@@ -15,6 +15,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
     <script type="text/javascript">
 
 
@@ -28,7 +34,8 @@
         
         var sources = ['256.jpg',
         					  '256.jpg',
-        					  '512.jpg'
+        					  '512.jpg',
+        					  '1024.jpg'
         					 ];
 
 		 function Start() {
@@ -39,7 +46,7 @@
 		 	TestDownloadNew(0);
 		 }
 
-		var host_maps = [ "http://us.testinternetspeed.link/",
+		var host_maps = [ "",
 							   ""
 							 ];
 		var ping_sources = ["http://us.testinternetspeed.link/ping.html",
@@ -55,7 +62,8 @@
 		            
 		            $.ajax({
 		                type: "GET",
-		                url: ping_sources[pos],
+		                url: ping_sources[pos],                
+ 
 		                success: function(msg) {
 
 								  var msg_r = "<strong>PING RESULT FOR "+server_loc[pos]+" SERVER FAILED!</strong><br>";
@@ -99,6 +107,51 @@
 		            start = new Date().getTime();
 		            
 		            $.ajax({
+
+							  //PROGRESS INFO ++++
+							  cache: false,
+							  xhr: function()
+							  {
+							    var xhr = new window.XMLHttpRequest();
+							    //Upload progress
+							    xhr.upload.addEventListener("progress", function(evt){
+							    	//alert("XXXXXXXXXXXXXXXXXXXX");
+							      if (evt.lengthComputable) {
+							        var percentComplete = evt.loaded / evt.total;
+							        //Do something with upload progress
+									  console.log("LOADED: "+evt.loaded);
+									  console.log("TOTAL: "+evt.total);
+							        console.log("PERCENT: "+percentComplete);
+							      }
+							    }, false);
+							    //Download progress
+							    xhr.addEventListener("progress", function(evt){
+							    	//alert("YYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+							      if (evt.lengthComputable) {
+							        var percentComplete = evt.loaded / evt.total;
+							        //Do something with download progress
+									  console.log("LOADED: "+evt.loaded);
+									  console.log("TOTAL: "+evt.total);
+							        console.log("PERCENT: "+percentComplete);
+
+					              end = new Date().getTime();
+		                       diff = (end - start) / 1000;
+		                       console.log("TIME: "+diff);		                       
+		                       
+		                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
+		                       speed = Math.round(speed*100)/100;
+		                       
+		                       console.log("SPPED: "+speed);
+							        
+							      }
+							    }, false);
+							    return xhr;
+							  },
+							  contentType: false,
+							  processData: false,
+							  //PROGRESS INFO ----	            
+		            
+		            
 		                type: "GET",
 		                url: host_maps[max_pos] + sources[pos] + "?id=" + start,
 		                success: function(msg) {
@@ -336,6 +389,8 @@ To start the test on your mobile device, locate the “Start Test” button and 
 </script>
 
 
+<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+
 <ul>
 <li></li>
 <li></li>
@@ -369,6 +424,130 @@ To start the test on your mobile device, locate the “Start Test” button and 
 
 
 </div>
+
+
+
+<script type="text/javascript">
+
+$(function () {
+
+    $('#container').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: 'Speedometer'
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 200,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'Mb/s'
+            },
+            plotBands: [{
+                from: 0,
+                to: 120,
+                color: '#55BF3B' // green
+            }, {
+                from: 120,
+                to: 160,
+                color: '#DDDF0D' // yellow
+            }, {
+                from: 160,
+                to: 200,
+                color: '#DF5353' // red
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [80],
+            tooltip: {
+                valueSuffix: ' Mb/s'
+            }
+        }]
+
+    },
+        // Add some life
+        function (chart) {
+            if (!chart.renderer.forExport) {
+                setInterval(function () {
+                    var point = chart.series[0].points[0],
+                        newVal,
+                        inc = Math.round((Math.random() - 0.5) * 20);
+
+                    newVal = point.y + inc;
+                    if (newVal < 0 || newVal > 200) {
+                        newVal = point.y - inc;
+                    }
+
+                    point.update(newVal);
+
+                }, 3000);
+            }
+        });
+});	
+
+</script>
+
+
 
 </body>
 </html>
