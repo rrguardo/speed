@@ -452,5 +452,7 @@ function update_chart(newVal, is_download) {
             }
         });
 
+$("#loading").hide("slow");
+$("#starttest").show("slow");
 
 }); //Main Jquery
