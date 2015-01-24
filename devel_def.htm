@@ -20,7 +20,6 @@
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-
     <script type="text/javascript">
 
 
@@ -31,6 +30,16 @@
         var end = 0;
         var binfile = '';
         var sum = 0;
+        var download_records = [];
+        var upload_records = [];
+
+			function calc_average(records) {
+				var sum = 0;
+				for (i = 0; i < records.length; i++) {
+    				sum = sum + records[i];
+				}
+				return Math.round((sum/records.length)*100)/100;
+			}      
         
         var sources = ['256.jpg',
         					  '256.jpg',
@@ -87,6 +96,7 @@
 		                    }else {
 		                    		
 		                    		$('#ping_info').append("Ping Test Completed! Using fast server: "+server_loc[max_pos]);
+		                    		play_init();
 		                    		Start();      		
 		                    }
 
@@ -112,36 +122,17 @@
 							  xhr: function()
 							  {
 							    var xhr = new window.XMLHttpRequest();
-							    //Upload progress
-							    xhr.upload.addEventListener("progress", function(evt){
-							    	//alert("XXXXXXXXXXXXXXXXXXXX");
-							      if (evt.lengthComputable) {
-							        var percentComplete = evt.loaded / evt.total;
-							        //Do something with upload progress
-									  console.log("LOADED: "+evt.loaded);
-									  console.log("TOTAL: "+evt.total);
-							        console.log("PERCENT: "+percentComplete);
-							      }
-							    }, false);
 							    //Download progress
 							    xhr.addEventListener("progress", function(evt){
-							    	//alert("YYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 							      if (evt.lengthComputable) {
 							        var percentComplete = evt.loaded / evt.total;
 							        //Do something with download progress
-									  console.log("LOADED: "+evt.loaded);
-									  console.log("TOTAL: "+evt.total);
-							        console.log("PERCENT: "+percentComplete);
-
 					              end = new Date().getTime();
 		                       diff = (end - start) / 1000;
-		                       console.log("TIME: "+diff);		                       
-		                       
 		                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
 		                       speed = Math.round(speed*100)/100;
-		                       update_chart(speed);
-		                       console.log("SPPED: "+speed);
-							        
+									  update_chart(speed, true);
+							        download_records.push(speed); 
 							      }
 							    }, false);
 							    return xhr;
@@ -155,36 +146,20 @@
 		                url: host_maps[max_pos] + sources[pos] + "?id=" + start,
 		                success: function(msg) {
 		                    binfile = msg;
-		                    end = new Date().getTime();
-		                    diff = (end - start) / 1000;
-		                    bytes = msg.length;
-		                    speed = (bytes / diff) / 1024 / 1024 * 8;
-		                    speed = Math.round(speed*100)/100;
-		                    sum = sum + speed;
-		                    $('#dlspeed').html('<b>' + speed + ' Mb/s </b>');
-		                    $('#dlbar').css('width', Math.floor(speed * 30)+'px');
-
-		   					  $('.dlspeed_bar').html('<b>' + speed + ' Mb/s</b>');
-		   					  $('.progress-bar').css('width', Math.floor(speed * 60)+'px');
 		                },
 		                complete: function(xhr, textStatus) {
 		                    
 		                    if ( pos+1 < sources.length  ) {
 		                    		TestDownloadNew(pos+1);
 		                    }else {
-		                    		sum = Math.round((sum/4)*100)/100;
-		 								$('#dlspeed').html('<b> Average: ' + sum + ' Mb/s </b>');
-		   							$('#dlbar').css('width', Math.floor(sum * 30)+'px');
-		   							
-		   							$('.dlspeed_bar').html('<b>' + sum + ' Mb/s</b>');
-		   							$('.progress-bar').css('width', Math.floor(sum * 60)+'px');
-		   							$('.progress-bar-striped').removeClass('active');
-		   							//$('#start_test').removeClass('hidden');
-
-		                    		ping_result = [0,0];
-										max_pos = 0;		   							
-		   							
+		                    		
+		 								$('#dlspeed').html('<b> Download average speed: ' + calc_average(download_records) + ' Mb/s </b>');
+		 								download_records = [];		   					   							
+		   							play_init();
 		   							TestUpload();
+		   							
+		   							ping_result = [0,0];
+										max_pos = 0;
 		                    }
 
 		                }
@@ -194,22 +169,43 @@
         
         function TestUpload() {
             start = new Date().getTime();
-            
+				speed = 0;            
             $.ajax({
+
+					  //PROGRESS INFO ++++
+					  cache: false,
+					  xhr: function()
+					  {
+					    var xhr = new window.XMLHttpRequest();
+					    //Upload progress
+					    xhr.upload.addEventListener("progress", function(evt){
+					      if (evt.lengthComputable) {
+					        var percentComplete = evt.loaded / evt.total;
+					        //Do something with download progress
+			              end = new Date().getTime();
+                       diff = (end - start) / 1000;         
+                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
+                       speed = Math.round(speed*100)/100;
+							  update_chart(speed, false);
+							  upload_records.push(speed);
+					      }
+					    }, false);
+					    return xhr;
+					  },
+					  contentType: false,
+					  processData: false,
+					  //PROGRESS INFO ----
+
                 type: "POST",
                 url: host_maps[max_pos] + "post.php?id=" + start,
                 data: binfile,
                 success: function(msg) {
-                    end = new Date().getTime();
-                    diff = (end - start) / 1000;
-                    bytes = binfile.length;
-                    speed = (bytes / diff) / 1024 / 1024 * 8;
-                    speed = Math.round(speed*100)/100;
-                    $('#ulspeed').html('<b>' + speed + ' Mb/s </b>');
-                    $('#ulbar').css('width', Math.floor(speed * 60)+'px');
+
+                    $('#ulspeed').html('<b> Upload average speed:' + calc_average(upload_records) + ' Mb/s </b>');
+                    upload_records = [];
 						  $('#start_test').removeClass('hidden');
-                    
-                }    
+                    play_stop();
+                }
             });
         }
         
@@ -221,7 +217,25 @@
 						//Start();	
 					});
 
+
+function play_init() {
+		
+		document.getElementById('start_sound').play();
+		
+		var sound_r = document.getElementById('run_sound');
+		sound_r.play();
+		sound_r.loop = true;
+	}
+	
+function play_stop() {
+		var sound_r = document.getElementById('run_sound');
+		sound_r.loop = false;
+		sound_r.pause();
+	}
+	
         });
+
+
     </script>
 
 <style>
@@ -260,8 +274,18 @@
 <div class="row">
 
 
+<audio id="start_sound" src="sound/start.mp3" preload="auto"></audio>
+<audio id="run_sound" src="sound/run.mp3" preload="auto"></audio>
 
-<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+<div class="col-xs-4 col-md-4">
+	<div id="container_download" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+	<div id="dlspeed" style="text-align: center; color: red;" >  </div>
+</div>
+
+<div class="col-xs-4 col-md-4">
+	<div id="container_upload" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+	<div id="ulspeed" style="text-align: center; color: red;" >  </div>
+</div>
 
 
   <div class="col-xs-12 col-md-12"> 
@@ -407,17 +431,53 @@ To start the test on your mobile device, locate the “Start Test” button and 
 
 <script type="text/javascript">
 
-var chart_spd= null;
+var chart_upload = null;
+var chart_download = null;
+var max_sp = 100;
 
-function update_chart(newVal) {
-	var point = chart_spd.series[0].points[0];
+var max_detected_download = 0;
+var max_detected_upload = 0;
+
+function update_chart(newVal, is_download) {
+
+	chart = null;
+	max_detected = 0;
+	change_done = false;
+	
+	if(is_download){
+		chart = chart_download;
+		max_detected = max_detected_download;
+		if(newVal>max_detected){
+			max_detected = newVal + 5;
+			max_detected_download = max_detected;
+			change_done = true;
+		}
+	}else{
+		chart = chart_upload;
+		max_detected = max_detected_upload;
+		if(newVal>max_detected){
+			max_detected = newVal + 5;
+			max_detected_upload = max_detected;
+			change_done = true;
+		}
+	}
+
+   if( change_done && max_detected < max_sp){
+   	chart.yAxis[0].setExtremes(0, Math.round(max_detected), true);
+   	
+	}
+
+	var point = chart.series[0].points[0];
    point.update(newVal);
+
+
 }
 
 
 $(function () {
 
-    $('#container').highcharts({
+//DOWLOAD CHART
+    $('#container_download').highcharts({
 
         chart: {
             type: 'gauge',
@@ -428,7 +488,7 @@ $(function () {
         },
 
         title: {
-            text: 'Speedometer'
+            text: 'Download Speedometer'
         },
 
         pane: {
@@ -467,7 +527,7 @@ $(function () {
         // the value axis
         yAxis: {
             min: 0,
-            max: 200,
+            max: 100,
 
             minorTickInterval: 'auto',
             minorTickWidth: 1,
@@ -489,16 +549,12 @@ $(function () {
             },
             plotBands: [{
                 from: 0,
-                to: 120,
+                to: 75,
                 color: '#55BF3B' // green
             }, {
-                from: 120,
-                to: 160,
+                from: 75,
+                to: 100,
                 color: '#DDDF0D' // yellow
-            }, {
-                from: 160,
-                to: 200,
-                color: '#DF5353' // red
             }]
         },
 
@@ -514,11 +570,109 @@ $(function () {
         // Add some life
         function (chart) {
             if (!chart.renderer.forExport) {
-
-					chart_spd = chart;            
-   
+					chart_download = chart;
             }
         });
+
+
+//UPLOAD CHART
+    $('#container_upload').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: 'Upload Speedometer'
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 100,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'Mb/s'
+            },
+            plotBands: [{
+                from: 0,
+                to: 75,
+                color: '#55BF3B' // green
+            }, {
+                from: 75,
+                to: 100,
+                color: '#DDDF0D' // yellow
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [0],
+            tooltip: {
+                valueSuffix: ' Mb/s'
+            }
+        }]
+
+    },
+        // Add some life
+        function (chart) {
+            if (!chart.renderer.forExport) {
+					chart_upload = chart;
+            }
+        });
+
 });	
 
 </script>
