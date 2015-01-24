@@ -1,7 +1,5 @@
 <html>
-
     
-
 <head>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -18,14 +16,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <script type="text/javascript">
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-
-		eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$(1m).1s(5(){6 9=0;6 d=0;6 w=\'\';6 7=0;6 z=[\'11.Q\',\'11.Q\',\'1t.Q\'];5 14(){7=0;$(\'.x-A-1e\').1d(\'1f\');$(\'#J\').T(\'K\');I(0)}6 G=["U://17.O.W/",""];6 H=["U://17.O.W/15.e","U://1A.O.W/15.1c"];6 u=[\'1x\',\'1z\'];6 r=[0,0];6 c=0;5 L(3){9=g i().f();$.C({D:"13",N:H[3],V:5(h){6 M="<k>10 Z 19 "+u[3]+" 1n 1o!</k><1p>";p(h.1r("1q")!=-1){d=g i().f();2=(d-9)/R;r[3]=2;p(r[3]<r[c]){c=3}M="<16>10 Z 19 <k>"+u[3]+"</k> 1B <k>"+1K(2)+"</k> 1M</16>"}$(\'#E\').18(M)},Y:5(X,1b){p(3+1<H.m){L(3+1)}1j{$(\'#E\').18("12 1N 1L! 1I 1J 1C: "+u[c]);14()}}})}5 I(3){p(3>z.m){1F}9=g i().f();$.C({D:"13",N:G[c]+z[3]+"?1i="+9,V:5(h){w=h;d=g i().f();y=(d-9)/R;v=h.m;2=(v/y)/ B /B*8;2=a.S(2*j)/j;7=7+2;$(\'#J\').e(\'<b>\'+2+\' l/s </b>\');$(\'#1k\').n(\'q\',a.t(2*1l)+\'o\');$(\'.1h\').e(\'<b>\'+2+\' l/s</b>\');$(\'.x-A\').n(\'q\',a.t(2*P)+\'o\')},Y:5(X,1b){p(3+1<z.m){I(3+1)}1j{7=a.S((7/4)*j)/j;$(\'#J\').e(\'<b> 1H: \'+7+\' l/s </b>\');$(\'#1k\').n(\'q\',a.t(7*1l)+\'o\');$(\'.1h\').e(\'<b>\'+7+\' l/s</b>\');$(\'.x-A\').n(\'q\',a.t(7*P)+\'o\');$(\'.x-A-1e\').T(\'1f\');r=[0,0];c=0;1g()}}})}5 1g(){9=g i().f();$.C({D:"1O",N:G[c]+"1w.1c?1i="+9,1u:w,V:5(h){d=g i().f();y=(d-9)/R;v=w.m;2=(v/y)/ B /B*8;2=a.S(2*j)/j;$(\'#1y\').e(\'<b>\'+2+\' l/s </b>\');$(\'#1v\').n(\'q\',a.t(2*P)+\'o\');$(\'#F\').T(\'K\')}})}$(\'#F\').1D(5(){$(\'#F\').1d(\'K\');$("#E").e("<1G><1a>12 1E:</1a>");L(0)})});',62,113,'||speed|pos||function|var|sum||start|Math||max_pos|end|html|getTime|new|msg|Date|100|strong|Mb|length|css|px|if|width|ping_result||floor|server_loc|bytes|binfile|progress|diff|sources|bar|1024|ajax|type|ping_info|start_test|host_maps|ping_sources|TestDownloadNew|dlspeed|hidden|PingTest|msg_r|url|testinternetspeed|60|jpg|1000|round|removeClass|http|success|link|xhr|complete|RESULT|PING|256|Ping|GET|Start|ping|h6|us|append|FOR|h3|textStatus|php|addClass|striped|active|TestUpload|dlspeed_bar|id|else|dlbar|30|document|SERVER|FAILED|br|OK|indexOf|ready|512|data|ulbar|post|USA|ulspeed|Germany|de|TOOK|server|click|Info|return|hr|Average|Using|fast|String|Completed|SECONDS|Test|POST'.split('|'),0,{}))
-
-
-    </script>
-
+<script src="speed.js"></script>
 
 
 <style>
@@ -53,10 +48,7 @@
 
 </head>     
 
-
-
 <body>
-
 
 
 
@@ -65,41 +57,26 @@
 <h1>Test Internet Speed Free!</h1>
 
 <div class="row">
+	<div class="col-md-6">
+		<div id="container_download" style="min-width: 210px; max-width: 300px; height: 300px; margin: 0 auto"></div>
+		<div id="dlspeed" style="text-align: center; color: red;" >  </div>
+	</div>
+	
+	<div class="col-md-6">
+		<div id="container_upload" style="min-width: 210px; max-width: 300px; height: 300px; margin: 0 auto"></div>
+		<div id="ulspeed" style="text-align: center; color: red;" >  </div>
+	</div>
+</div>
+
+<div class="row">
+
+<audio id="start_sound" src="sound/start.mp3" preload="auto"></audio>
+<audio id="run_sound" src="sound/run.mp3" preload="auto"></audio>
+
   <div class="col-xs-12 col-md-12"> 
 
-    <p>
-
-        Download speed:
-		<div class="bs-example" >
-
-			<span id="dlspeed" class="hidden" ><img src="busy.gif"></span><br>		    
- 
-		    <div class="progress" >
-		      <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-		      </div>
-					<span class="dlspeed_bar"> <b>? Mb/s</b> </span>
-		      </div>
-		    <div style="float: right;margin-top: -15px;margin-bottom: 10px;" >10 Mb/s</div>
-		</div>
-    </p>
-
-	<hr style="clear: both;" >
-	
-	    <p>
-
-	        Upload speed:
-
-	        <div class="bs-example" >
-	        <span id="ulspeed"><img src="busy.gif"></span><br>
-
-	        <img src="bar.gif" width="300" height="10">
-
-				<div style="float: right;" >5 Mb/s</div>
-			  </div>
-	    </p>
 	<br>
 	<button type="button" class="btn btn-default" id="start_test"  >Start Test</button>
-
 	
 	
 	<div id="ping_info" >
@@ -123,6 +100,7 @@
 	</p>
 	</div>
 </div>
+
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- MovBig -->
@@ -212,7 +190,7 @@ To start the test on your mobile device, locate the “Start Test” button and 
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" style="float: left;" data-toggle="collapse" data-target="#footer-body">
+                <button type="button" class="navbar-toggle" style="float: left;"  data-toggle="collapse" data-target="#footer-body">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -222,9 +200,9 @@ To start the test on your mobile device, locate the “Start Test” button and 
                 <ul class="nav navbar-nav">
 						  <li><a href="#starttest">Start Test</a></li>                    
                     <li><a href="#testtips">Test Tips</a></li>
-                    <li><a href="#terms">Terms &amp; Conditions</a></li>
                     <li><a href="#howitworks">How It Works</a></li>
                     <li> <a href="#androidapp" >Android App</a> </li>
+                    <li><a href="#terms">Terms &amp; Conditions</a></li>
                 </ul>
             </div>
         </div>
@@ -235,6 +213,4 @@ To start the test on your mobile device, locate the “Start Test” button and 
 </div>
 
 </body>
-
 </html>
-

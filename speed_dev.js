@@ -1,29 +1,5 @@
-<html>
-    
-<head>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/highcharts-more.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-    <script type="text/javascript">
-
-
-        $(document).ready(function() {
+$(document).ready(function() {
             //TestDownload();
             
         var start = 0;
@@ -232,204 +208,7 @@ function play_stop() {
 		sound_r.loop = false;
 		sound_r.pause();
 	}
-	
-        });
 
-
-    </script>
-
-<style>
-	
-	.bs-example{
-			width: 300px;
-	}
-
-	.hidden{ display: none; }
-
-</style>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-53022084-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<title> Test Internet Speed</title>
-
-</head>     
-
-<body>
-
-
-
-<div class="container-fluid" id="starttest" >
-
-<h1>Test Internet Speed Free!</h1>
-
-<div class="row">
-
-
-<audio id="start_sound" src="sound/start.mp3" preload="auto"></audio>
-<audio id="run_sound" src="sound/run.mp3" preload="auto"></audio>
-
-<div class="col-xs-4 col-md-4">
-	<div id="container_download" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
-	<div id="dlspeed" style="text-align: center; color: red;" >  </div>
-</div>
-
-<div class="col-xs-4 col-md-4">
-	<div id="container_upload" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
-	<div id="ulspeed" style="text-align: center; color: red;" >  </div>
-</div>
-
-
-  <div class="col-xs-12 col-md-12"> 
-
-	<br>
-	<button type="button" class="btn btn-default" id="start_test"  >Start Test</button>
-	
-	
-	<div id="ping_info" >
-	</div>
-  
-  </div>
-</div>
-
-<br>
-<div class="row" id="testtips" >
-  <div class="col-xs-12 col-md-12"> 
-	
-	<h3>Test Tips</h3>
-	<p>
-	Test your Internet connection speed free of costs, by simply click on the start test button. 
-	The Internet speed is affected by other softwares that you have installed on your computer or device. 
-	Is recommended that you close other programs that can use Internet, before test your internet speed. 
-	If not exist more softwares that consuming your internet speed, you will get a more accurate results; 
-	otherwise you will get only your current available and unused internet bandwidth. 
-	Please update your web browser to a new version if you get any error while testing your internet speed.
-	</p>
-	</div>
-</div>
-
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MovBig -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-1432664808275238"
-     data-ad-slot="2697165906"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<div class="row" id="howitworks" >
-	<div class="col-xs-12 col-md-12"> 
-	<h3>How It Works</h3>
-	
-	<p>
-	Every time you initialize the test by a click on the "Start Test" button, a ping tests is done to detect the fast servers depending on response time. 
-	After select the server with the most small ping time, then the internet speed test is initialized, and a set of files are downloaded and uploaded 
-	from your computer or device. 
-	The final download speed is measured as the average of all the independent download speed tests done.
-	
-	</p>
-	</div>
-</div>
-
-
-<div class="row" id="androidapp" >
-	<div class="col-xs-12 col-md-12"> 
-	<h3>Android App</h3>
-	
-	<p>
-	You can also perform the internet speed test on your android device free of costs, and measure how fast can be internet on your mobile device. <a href="https://play.google.com/store/apps/details?id=com.wInternetSpeedTestFree" >Download the app here</a> 
-	from google app store or just scan the QR code using your mobile QR code scanner.
-To start the test on your mobile device, locate the “Start Test” button and click it.
-	</p>
-
-<img src="qrcode.png" alt="Internet Speed Test, free app QR code.">
-	</div>
-</div>
-
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MovBig -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-1432664808275238"
-     data-ad-slot="2697165906"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<div class="row" id="terms" >
-	<div class="col-xs-12 col-md-12"> 
-	<h3> Terms &amp; Conditions</h3>
-	
-	<p>
-	You can use all our services free to test your internet speed free of costs.
-	</p>
-	</div>
-</div>
-
-<br>
-
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MovBig -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-1432664808275238"
-     data-ad-slot="2697165906"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-
-
-<footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" style="float: left;"  data-toggle="collapse" data-target="#footer-body">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>    
-            </div>
-            <div class="navbar-collapse collapse" id="footer-body">
-                <ul class="nav navbar-nav">
-						  <li><a href="#starttest">Start Test</a></li>                    
-                    <li><a href="#testtips">Test Tips</a></li>
-                    <li><a href="#howitworks">How It Works</a></li>
-                    <li> <a href="#androidapp" >Android App</a> </li>
-                    <li><a href="#terms">Terms &amp; Conditions</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-</div>
-
-
-
-<script type="text/javascript">
 
 var chart_upload = null;
 var chart_download = null;
@@ -474,7 +253,7 @@ function update_chart(newVal, is_download) {
 }
 
 
-$(function () {
+
 
 //DOWLOAD CHART
     $('#container_download').highcharts({
@@ -673,11 +452,5 @@ $(function () {
             }
         });
 
-});	
 
-</script>
-
-
-
-</body>
-</html>
+}); //Main Jquery
