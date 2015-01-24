@@ -34,8 +34,7 @@
         
         var sources = ['256.jpg',
         					  '256.jpg',
-        					  '512.jpg',
-        					  '1024.jpg'
+        					  '512.jpg'
         					 ];
 
 		 function Start() {
@@ -46,7 +45,7 @@
 		 	TestDownloadNew(0);
 		 }
 
-		var host_maps = [ "",
+		var host_maps = [ "http://us.testinternetspeed.link/",
 							   ""
 							 ];
 		var ping_sources = ["http://us.testinternetspeed.link/ping.html",
@@ -140,7 +139,7 @@
 		                       
 		                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
 		                       speed = Math.round(speed*100)/100;
-		                       
+		                       update_chart(speed);
 		                       console.log("SPPED: "+speed);
 							        
 							      }
@@ -259,33 +258,14 @@
 <h1>Test Internet Speed Free!</h1>
 
 <div class="row">
+
+
+
+<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+
+
   <div class="col-xs-12 col-md-12"> 
 
-    <p>
-        Download speed:
-		<div class="bs-example" >
-
-			<span id="dlspeed" class="hidden" ><img src="busy.gif"></span><br>		    
- 
-		    <div class="progress" >
-		      <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-		      </div>
-					<span class="dlspeed_bar"> <b>? Mb/s</b> </span>
-		      </div>
-		    <div style="float: right;margin-top: -15px;margin-bottom: 10px;" >10 Mb/s</div>
-		</div>
-    </p>
-
-	<hr style="clear: both;" >
-	
-	    <p>
-	        Upload speed:
-	        <div class="bs-example" >
-	        <span id="ulspeed"><img src="busy.gif"></span><br>
-	        <img src="bar.gif" width="300" height="10">
-				<div style="float: right;" >5 Mb/s</div>
-			  </div>
-	    </p>
 	<br>
 	<button type="button" class="btn btn-default" id="start_test"  >Start Test</button>
 	
@@ -389,8 +369,6 @@ To start the test on your mobile device, locate the “Start Test” button and 
 </script>
 
 
-<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
-
 <ul>
 <li></li>
 <li></li>
@@ -428,6 +406,14 @@ To start the test on your mobile device, locate the “Start Test” button and 
 
 
 <script type="text/javascript">
+
+var chart_spd= null;
+
+function update_chart(newVal) {
+	var point = chart_spd.series[0].points[0];
+   point.update(newVal);
+}
+
 
 $(function () {
 
@@ -518,7 +504,7 @@ $(function () {
 
         series: [{
             name: 'Speed',
-            data: [80],
+            data: [0],
             tooltip: {
                 valueSuffix: ' Mb/s'
             }
@@ -528,19 +514,9 @@ $(function () {
         // Add some life
         function (chart) {
             if (!chart.renderer.forExport) {
-                setInterval(function () {
-                    var point = chart.series[0].points[0],
-                        newVal,
-                        inc = Math.round((Math.random() - 0.5) * 20);
 
-                    newVal = point.y + inc;
-                    if (newVal < 0 || newVal > 200) {
-                        newVal = point.y - inc;
-                    }
-
-                    point.update(newVal);
-
-                }, 3000);
+					chart_spd = chart;            
+   
             }
         });
 });	
