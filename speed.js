@@ -1,8 +1,6 @@
 
 $(document).ready(function() {
 
-		jQuery.browser.mobile =false;
-            
         var start = 0;
         var end = 0;
         var binfile = '';
