@@ -131,8 +131,14 @@ $(document).ready(function() {
 		                    		
 		 								$('#dlspeed').html('<b> Download average speed: ' + calc_average(download_records) + ' Mb/s </b>');
 		 								download_records = [];		   					   							
-		   							play_init();
-		   							TestUpload();
+
+										if(!jQuery.browser.mobile){
+		   								play_init();
+		   								TestUpload();
+		   							}else{
+		   								play_stop();
+		   								$('#start_test').removeClass('hidden');
+		   							}
 		   							
 		   							ping_result = [0,0];
 										max_pos = 0;
@@ -152,7 +158,12 @@ $(document).ready(function() {
 					  cache: false,
 					  xhr: function()
 					  {
-					    var xhr = new window.XMLHttpRequest();
+					  	 var xhr = null;
+					  	 if(window.ActiveXObject){
+						 	xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
+						 }else{
+					    	xhr = new window.XMLHttpRequest();
+					 	 }
 					    //Upload progress
 					    xhr.upload.addEventListener("progress", function(evt){
 					      if (evt.lengthComputable) {
@@ -454,5 +465,10 @@ function update_chart(newVal, is_download) {
 
 $("#loading").hide("slow");
 $("#starttest").show("slow");
+
+
+if(jQuery.browser.mobile){
+	$("#container_upload").parent().hide();
+}
 
 }); //Main Jquery

@@ -1,1 +1,474 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$(P).3B(4(){3 h=0;3 k=0;3 1g=\'\';3 t=0;3 11=[];3 G=[];4 1t(X){3 t=0;3t(i=0;i<X.z;i++){t=t+X[i]}17 19.T((t/X.z)*e)/e}3 Z=[\'1X.1c\',\'1X.1c\',\'3q.1c\'];4 2c(){t=0;$(\'.1h-3k-3a\').2N(\'39\');$(\'#2h\').2O(\'1r\');1n(0)}3 1p=["1u://27.1j.1l/",""];3 1m=["1u://27.1j.1l/29.J","1u://3b.1j.1l/29.1S"];3 Y=[\'3f\',\'3e\'];3 y=[0,0];3 m=0;4 1x(7){h=j p().q();$.1k({A:"2j",1o:1m[7],1w:4(B){3 1v="<x>2a 26 25 "+Y[7]+" 3d 3h!</x><2Z>";c(B.2Y("31")!=-1){k=j p().q();6=(k-h)/1i;y[7]=6;c(y[7]<y[m]){m=7}1v="<22>2a 26 25 <x>"+Y[7]+"</x> 34 <x>"+35(6)+"</x> 3g</22>"}$(\'#1s\').24(1v)},2k:4(g,2l){c(7+1<1m.z){1x(7+1)}1a{$(\'#1s\').24("2K 3i 3y! 3z 3A 3C: "+Y[m]);1f();2c()}}})}4 1n(7){c(7>Z.z){17}h=j p().q();$.1k({2g:9,g:4(){3 g=j 2n.1V();g.1F("1h",4(f){c(f.1N){3 1K=f.16/f.1M;k=j p().q();15=(k-h)/1i;6=(f.16/15)/ 14 /14*8;6=19.T(6*e)/e;1b(6,C);11.2o(6)}},9);17 g},1U:9,1T:9,A:"2j",1o:1p[m]+Z[7]+"?2f="+h,1w:4(B){1g=B},2k:4(g,2l){c(7+1<Z.z){1n(7+1)}1a{$(\'#2h\').J(\'<b> 1L 2Q 6: \'+1t(11)+\' w/s </b>\');11=[];1f();2e();y=[0,0];m=0}}})}4 2e(){h=j p().q();6=0;$.1k({2g:9,g:4(){3 g=j 2n.1V();g.3r.1F("1h",4(f){c(f.1N){3 1K=f.16/f.1M;k=j p().q();15=(k-h)/1i;6=(f.16/15)/ 14 /14*8;6=19.T(6*e)/e;1b(6,9);G.2o(6)}},9);17 g},1U:9,1T:9,A:"3v",1o:1p[m]+"33.1S?2f="+h,1A:1g,1w:4(B){$(\'#3s\').J(\'<b> 2H 2Q 6:\'+1t(G)+\' w/s </b>\');G=[];$(\'#1q\').2O(\'1r\');2u()}})}$(\'#1q\').3n(4(){$(\'#1q\').2N(\'1r\');$("#1s").J("<3p><2v>2K 3u:</2v>");1x(0)});4 1f(){P.1y(\'3o\').2y();3 r=P.1y(\'2q\');r.2y();r.2r=C}4 2u(){3 r=P.1y(\'2q\');r.2r=9;r.3j()}3 1B=l;3 1D=l;3 2G=e;3 1e=0;3 1d=0;4 1b(n,2z){a=l;d=0;I=9;c(2z){a=1D;d=1e;c(n>d){d=n+5;1e=d;I=C}}1a{a=1B;d=1d;c(n>d){d=n+5;1d=d;I=C}}c(I&&d<2G){a.1z[0].3w(0,19.T(d),C)}3 2E=a.1C[0].36[0];2E.3c(n)}$(\'#38\').2D({a:{A:\'2C\',2B:l,2F:l,2J:0,2I:9},12:{U:\'1L 2A\'},2L:{2s:-L,2t:L,2x:[{v:{D:{E:0,F:0,H:0,O:1},M:[[0,\'#K\'],[1,\'#N\']]},u:0,o:\'2w%\'},{v:{D:{E:0,F:0,H:0,O:1},M:[[0,\'#N\'],[1,\'#K\']]},u:1,o:\'2U%\'},{},{v:\'#2V\',u:0,o:\'2S%\',2T:\'2P%\'}]},1z:{2M:0,2W:e,2X:\'13\',2R:1,1R:10,1Q:\'Q\',1P:\'#18\',1Y:30,1W:2,1O:\'Q\',1Z:10,1H:\'#18\',1G:{1E:2,1I:\'13\'},12:{U:\'w/s\'},1J:[{S:0,V:R,W:\'#20\'},{S:R,V:e,W:\'#2d\'}]},1C:[{2i:\'2m\',1A:[0],2b:{23:\' w/s\'}}]},4(a){c(!a.21.28){1D=a}});$(\'#32\').2D({a:{A:\'2C\',2B:l,2F:l,2J:0,2I:9},12:{U:\'2H 2A\'},2L:{2s:-L,2t:L,2x:[{v:{D:{E:0,F:0,H:0,O:1},M:[[0,\'#K\'],[1,\'#N\']]},u:0,o:\'2w%\'},{v:{D:{E:0,F:0,H:0,O:1},M:[[0,\'#N\'],[1,\'#K\']]},u:1,o:\'2U%\'},{},{v:\'#2V\',u:0,o:\'2S%\',2T:\'2P%\'}]},1z:{2M:0,2W:e,2X:\'13\',2R:1,1R:10,1Q:\'Q\',1P:\'#18\',1Y:30,1W:2,1O:\'Q\',1Z:10,1H:\'#18\',1G:{1E:2,1I:\'13\'},12:{U:\'w/s\'},1J:[{S:0,V:R,W:\'#20\'},{S:R,V:e,W:\'#2d\'}]},1C:[{2i:\'2m\',1A:[0],2b:{23:\' w/s\'}}]},4(a){c(!a.21.28){1B=a}});$("#37").3x("2p");$("#3l").3m("2p")});',62,225,'|||var|function||speed|pos||false|chart||if|max_detected|100|evt|xhr|start||new|end|null|max_pos|newVal|outerRadius|Date|getTime|sound_r||sum|borderWidth|backgroundColor|Mb|strong|ping_result|length|type|msg|true|linearGradient|x1|y1|upload_records|x2|change_done|html|FFF|150|stops|333|y2|document|inside|75|from|round|text|to|color|records|server_loc|sources||download_records|title|auto|1024|diff|loaded|return|666|Math|else|update_chart|jpg|max_detected_upload|max_detected_download|play_init|binfile|progress|1000|testinternetspeed|ajax|link|ping_sources|TestDownloadNew|url|host_maps|start_test|hidden|ping_info|calc_average|http|msg_r|success|PingTest|getElementById|yAxis|data|chart_upload|series|chart_download|step|addEventListener|labels|tickColor|rotation|plotBands|percentComplete|Download|total|lengthComputable|tickPosition|minorTickColor|minorTickPosition|minorTickLength|php|processData|contentType|XMLHttpRequest|tickWidth|256|tickPixelInterval|tickLength|55BF3B|renderer|h6|valueSuffix|append|FOR|RESULT|us|forExport|ping|PING|tooltip|Start|DDDF0D|TestUpload|id|cache|dlspeed|name|GET|complete|textStatus|Speed|window|push|slow|run_sound|loop|startAngle|endAngle|play_stop|h3|109|background|play|is_download|Speedometer|plotBackgroundColor|gauge|highcharts|point|plotBackgroundImage|max_sp|Upload|plotShadow|plotBorderWidth|Ping|pane|min|addClass|removeClass|103|average|minorTickWidth|105|innerRadius|107|DDD|max|minorTickInterval|indexOf|br||OK|container_upload|post|TOOK|String|points|loading|container_download|active|striped|de|update|SERVER|Germany|USA|SECONDS|FAILED|Test|pause|bar|starttest|show|click|start_sound|hr|512|upload|ulspeed|for|Info|POST|setExtremes|hide|Completed|Using|fast|ready|server'.split('|'),0,{}))
+
+$(document).ready(function() {
+            //TestDownload();
+            
+        var start = 0;
+        var end = 0;
+        var binfile = '';
+        var sum = 0;
+        var download_records = [];
+        var upload_records = [];
+
+			function calc_average(records) {
+				var sum = 0;
+				for (i = 0; i < records.length; i++) {
+    				sum = sum + records[i];
+				}
+				return Math.round((sum/records.length)*100)/100;
+			}      
+        
+        var sources = ['256.jpg',
+        					  '256.jpg',
+        					  '512.jpg'
+        					 ];
+
+		 function Start() {
+
+		 	sum = 0;
+		 	$('.progress-bar-striped').addClass('active');
+		 	$('#dlspeed').removeClass('hidden');
+		 	TestDownloadNew(0);
+		 }
+
+		var host_maps = [ "http://us.testinternetspeed.link/",
+							   ""
+							 ];
+		var ping_sources = ["http://us.testinternetspeed.link/ping.html",
+								  "http://de.testinternetspeed.link/ping.php"
+								 ];
+		var server_loc = ['USA', 'Germany'];
+		var ping_result = [0,0];
+		var max_pos = 0;
+		
+		function PingTest(pos) {
+						
+		            start = new Date().getTime();
+		            
+		            $.ajax({
+		                type: "GET",
+		                url: ping_sources[pos],                
+ 
+		                success: function(msg) {
+
+								  var msg_r = "<strong>PING RESULT FOR "+server_loc[pos]+" SERVER FAILED!</strong><br>";
+		                   
+		                    if(msg.indexOf("OK")!=-1)
+		                    {
+		                    		end = new Date().getTime();
+		                    		speed = (end - start) / 1000;
+		                    		ping_result[pos] = speed;
+		                    		if (ping_result[pos]<ping_result[max_pos]) {
+		                    			max_pos = pos;
+		                    		}
+		                    		msg_r = "<h6>PING RESULT FOR <strong>"+server_loc[pos]+"</strong> TOOK <strong>"+String(speed)+"</strong> SECONDS</h6>";	
+		                    }
+		                    
+		                    $('#ping_info').append(msg_r);
+		                },
+		                complete: function(xhr, textStatus) {
+		                    
+		                    if ( pos+1 < ping_sources.length  ) {
+		                    		PingTest(pos+1);
+		                    }else {
+		                    		
+		                    		$('#ping_info').append("Ping Test Completed! Using fast server: "+server_loc[max_pos]);
+		                    		play_init();
+		                    		Start();      		
+		                    }
+
+		                }
+		            });
+		        }        
+
+
+
+		
+		function TestDownloadNew(pos) {
+		
+						if (pos>sources.length) {
+							return;
+						}
+						
+		            start = new Date().getTime();
+		            
+		            $.ajax({
+
+							  //PROGRESS INFO ++++
+							  cache: false,
+							  xhr: function()
+							  {
+							    var xhr = new window.XMLHttpRequest();
+							    //Download progress
+							    xhr.addEventListener("progress", function(evt){
+							      if (evt.lengthComputable) {
+							        var percentComplete = evt.loaded / evt.total;
+							        //Do something with download progress
+					              end = new Date().getTime();
+		                       diff = (end - start) / 1000;
+		                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
+		                       speed = Math.round(speed*100)/100;
+									  update_chart(speed, true);
+							        download_records.push(speed); 
+							      }
+							    }, false);
+							    return xhr;
+							  },
+							  contentType: false,
+							  processData: false,
+							  //PROGRESS INFO ----	            
+		            
+		            
+		                type: "GET",
+		                url: host_maps[max_pos] + sources[pos] + "?id=" + start,
+		                success: function(msg) {
+		                    binfile = msg;
+		                },
+		                complete: function(xhr, textStatus) {
+		                    
+		                    if ( pos+1 < sources.length  ) {
+		                    		TestDownloadNew(pos+1);
+		                    }else {
+		                    		
+		 								$('#dlspeed').html('<b> Download average speed: ' + calc_average(download_records) + ' Mb/s </b>');
+		 								download_records = [];		   					   							
+
+										if(!jQuery.browser.mobile){
+		   								play_init();
+		   								TestUpload();
+		   							}else{
+		   								play_stop();
+		   								$('#start_test').removeClass('hidden');
+		   							}
+		   							
+		   							ping_result = [0,0];
+										max_pos = 0;
+		                    }
+
+		                }
+		            });
+		        }        
+
+        
+        function TestUpload() {
+            start = new Date().getTime();
+				speed = 0;            
+            $.ajax({
+
+					  //PROGRESS INFO ++++
+					  cache: false,
+					  xhr: function()
+					  {
+					  	 var xhr = null;
+					  	 if(window.ActiveXObject){
+						 	xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
+						 }else{
+					    	xhr = new window.XMLHttpRequest();
+					 	 }
+					    //Upload progress
+					    xhr.upload.addEventListener("progress", function(evt){
+					      if (evt.lengthComputable) {
+					        var percentComplete = evt.loaded / evt.total;
+					        //Do something with download progress
+			              end = new Date().getTime();
+                       diff = (end - start) / 1000;         
+                    	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
+                       speed = Math.round(speed*100)/100;
+							  update_chart(speed, false);
+							  upload_records.push(speed);
+					      }
+					    }, false);
+					    return xhr;
+					  },
+					  contentType: false,
+					  processData: false,
+					  //PROGRESS INFO ----
+
+                type: "POST",
+                url: host_maps[max_pos] + "post.php?id=" + start,
+                data: binfile,
+                success: function(msg) {
+
+                    $('#ulspeed').html('<b> Upload average speed:' + calc_average(upload_records) + ' Mb/s </b>');
+                    upload_records = [];
+						  $('#start_test').removeClass('hidden');
+                    play_stop();
+                }
+            });
+        }
+        
+            $('#start_test').click(
+					function () {
+						$('#start_test').addClass('hidden');						
+						$("#ping_info").html("<hr><h3>Ping Info:</h3>");
+						PingTest(0);
+						//Start();	
+					});
+
+
+function play_init() {
+		
+		document.getElementById('start_sound').play();
+		
+		var sound_r = document.getElementById('run_sound');
+		sound_r.play();
+		sound_r.loop = true;
+	}
+	
+function play_stop() {
+		var sound_r = document.getElementById('run_sound');
+		sound_r.loop = false;
+		sound_r.pause();
+	}
+
+
+var chart_upload = null;
+var chart_download = null;
+var max_sp = 100;
+
+var max_detected_download = 0;
+var max_detected_upload = 0;
+
+function update_chart(newVal, is_download) {
+
+	chart = null;
+	max_detected = 0;
+	change_done = false;
+	
+	if(is_download){
+		chart = chart_download;
+		max_detected = max_detected_download;
+		if(newVal>max_detected){
+			max_detected = newVal + 5;
+			max_detected_download = max_detected;
+			change_done = true;
+		}
+	}else{
+		chart = chart_upload;
+		max_detected = max_detected_upload;
+		if(newVal>max_detected){
+			max_detected = newVal + 5;
+			max_detected_upload = max_detected;
+			change_done = true;
+		}
+	}
+
+   if( change_done && max_detected < max_sp){
+   	chart.yAxis[0].setExtremes(0, Math.round(max_detected), true);
+   	
+	}
+
+	var point = chart.series[0].points[0];
+   point.update(newVal);
+
+
+}
+
+
+
+
+//DOWLOAD CHART
+    $('#container_download').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: 'Download Speedometer'
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 100,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'Mb/s'
+            },
+            plotBands: [{
+                from: 0,
+                to: 75,
+                color: '#55BF3B' // green
+            }, {
+                from: 75,
+                to: 100,
+                color: '#DDDF0D' // yellow
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [0],
+            tooltip: {
+                valueSuffix: ' Mb/s'
+            }
+        }]
+
+    },
+        // Add some life
+        function (chart) {
+            if (!chart.renderer.forExport) {
+					chart_download = chart;
+            }
+        });
+
+
+//UPLOAD CHART
+    $('#container_upload').highcharts({
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+
+        title: {
+            text: 'Upload Speedometer'
+        },
+
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 100,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'Mb/s'
+            },
+            plotBands: [{
+                from: 0,
+                to: 75,
+                color: '#55BF3B' // green
+            }, {
+                from: 75,
+                to: 100,
+                color: '#DDDF0D' // yellow
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [0],
+            tooltip: {
+                valueSuffix: ' Mb/s'
+            }
+        }]
+
+    },
+        // Add some life
+        function (chart) {
+            if (!chart.renderer.forExport) {
+					chart_upload = chart;
+            }
+        });
+
+$("#loading").hide("slow");
+$("#starttest").show("slow");
+
+
+if(jQuery.browser.mobile){
+	$("#container_upload").parent().hide();
+}
+
+}); //Main Jquery
