@@ -162,7 +162,7 @@ $(document).ready(function() {
                        diff = (end - start) / 1000;         
                     	  speed = (evt.loaded / diff) / 1024 / 1024 * 8;
                        speed = Math.round(speed*100)/100;
-							  update_chart(speed, false);
+							  update_chart(speed, true);
 							  upload_records.push(speed);
 					      }
 					    }, false);
