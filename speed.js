@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
-            //TestDownload();
+
+		jQuery.browser.mobile =false;
             
         var start = 0;
         var end = 0;
