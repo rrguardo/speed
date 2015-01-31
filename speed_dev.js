@@ -262,6 +262,34 @@ function update_chart(newVal, is_download) {
    if( change_done && max_detected < max_sp){
    	chart.yAxis[0].setExtremes(0, Math.round(max_detected), true);
    	
+   	chart.yAxis[0].removePlotBand('pb_1');
+   	chart.yAxis[0].removePlotBand('pb_2');
+   	chart.yAxis[0].removePlotBand('pb_3');
+
+		chart.yAxis[0].addPlotBand({
+			from: 0,
+         to: Math.round(max_detected*4/6),
+         color: '#55BF3B',
+         id: 'pb_1'
+      });   	
+
+		chart.yAxis[0].addPlotBand({
+			from: Math.round(max_detected*4/6),
+         to: Math.round(max_detected*5/6),
+         color: '#DDDF0D',
+         id: 'pb_2'
+      });
+
+		chart.yAxis[0].addPlotBand({
+			from: Math.round(max_detected*5/6),
+         to: Math.round(max_detected),
+         color: '#DF5353',
+         id: 'pb_3'
+      });
+
+   	//chart.yAxis[0].zoom(0,Math.round(max_detected));
+   	//chart.showResetZoom();
+   	chart.redraw();
 	}
 
 	var point = chart.series[0].points[0];
@@ -346,12 +374,19 @@ function update_chart(newVal, is_download) {
             },
             plotBands: [{
                 from: 0,
-                to: 75,
-                color: '#55BF3B' // green
+                to: 60,
+                color: '#55BF3B', // green
+                id: 'pb_1'
             }, {
-                from: 75,
+                from: 60,
+                to: 80,
+                color: '#DDDF0D', // yellow
+                id: 'pb_2'
+            }, {
+                from: 80,
                 to: 100,
-                color: '#DDDF0D' // yellow
+                color: '#DF5353', // red
+                id: 'pb_3'
             }]
         },
 
@@ -445,12 +480,19 @@ function update_chart(newVal, is_download) {
             },
             plotBands: [{
                 from: 0,
-                to: 75,
-                color: '#55BF3B' // green
+                to: 60,
+                color: '#55BF3B', // green
+                id: 'pb_1'
             }, {
-                from: 75,
+                from: 60,
+                to: 80,
+                color: '#DDDF0D', // yellow
+                id: 'pb_2'
+            }, {
+                from: 80,
                 to: 100,
-                color: '#DDDF0D' // yellow
+                color: '#DF5353', // red
+                id: 'pb_3'
             }]
         },
 
