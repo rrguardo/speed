@@ -127,12 +127,9 @@ $(document).ready(function() {
 		                    if ( pos+1 ==1 && avg_spd>1 ) {
 		                    		
 		                    		spd_file = Math.round(avg_spd);
-										spd_file = Math.round(spd_file/5)*5;                   		
+										spd_file = Math.round(spd_file/5)*5 + 5;                   		
 										if(spd_file>35){ 
 											spd_file = 35 
-										}
-										if(spd_file==0){ 
-											spd_file = 1 
 										}
              		
 		                    		sources[pos+1] = spd_file.toString()+".bin";
