@@ -11,10 +11,11 @@ TestInternetSpeed.Link code.
 ### How do I get set up? ###
 
 * Summary of set up
-1. Clone this repo in main domain server
-2. Setup httplight in every not main server with properly header to allow cross domain request
-3. Run file creation bash to create the testing .bin files
-4. Setup js configuration adding every not main server to the ping and file sources. 
+
+   1.    Clone this repo in main domain server
+   1.   Setup httplight in every not main server with properly header to allow cross domain request
+   1.   Run file creation bash to create the testing .bin files
+   1.   Setup js configuration adding every not main server to the ping and file sources. 
 
 * Configuration
 * Dependencies
