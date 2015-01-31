@@ -11,6 +11,9 @@ TestInternetSpeed.Link code.
 ### How do I get set up? ###
 
 * Summary of set up
+
+# clone this repo in main domain server
+
 * Configuration
 * Dependencies
 * Database configuration
