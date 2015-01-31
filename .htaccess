@@ -2,3 +2,9 @@
         Order deny,allow
         Deny from all
 </Files>
+
+
+<Files init_server.sh>
+        Order deny,allow
+        Deny from all
+</Files>

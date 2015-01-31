@@ -17,10 +17,7 @@ $(document).ready(function() {
 				return Math.round((sum/records.length)*100)/100;
 			}      
         
-        var sources = ['256.jpg',
-        					  '256.jpg',
-        					  '512.jpg'
-        					 ];
+        var sources = ['512.jpg', 'auto'];
 
 		 function Start() {
 
@@ -124,12 +121,25 @@ $(document).ready(function() {
 		                    binfile = msg;
 		                },
 		                complete: function(xhr, textStatus) {
+
+								  avg_spd = calc_average(download_records);		                    
 		                    
-		                    if ( pos+1 < sources.length  ) {
-		                    		TestDownloadNew(pos+1);
-		                    }else {
+		                    if ( pos+1 ==1 && avg_spd>1 ) {
 		                    		
-		 								$('#dlspeed').html('<b> Download average speed: ' + calc_average(download_records) + ' Mb/s </b>');
+		                    		spd_file = Math.round(avg_spd);
+										spd_file = Math.round(spd_file/5)*5;                   		
+										if(spd_file>35){ 
+											spd_file = 35 
+										}
+										if(spd_file==0){ 
+											spd_file = 1 
+										}
+             		
+		                    		sources[pos+1] = spd_file.toString()+".bin";
+		                    		TestDownloadNew(pos+1);
+		                    		
+		                    }else {
+		 								$('#dlspeed').html('<b> Download average speed: ' + avg_spd + ' Mb/s </b>');
 		 								download_records = [];		   					   							
 
 										if(!jQuery.browser.mobile){
