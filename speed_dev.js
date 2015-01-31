@@ -144,7 +144,7 @@ $(document).ready(function() {
 
 										if(!jQuery.browser.mobile){
 		   								play_init();
-		   								TestUpload();
+   		  								TestUpload();
 		   							}else{
 		   								play_stop();
 		   								$('#start_test').removeClass('hidden');
