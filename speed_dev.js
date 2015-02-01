@@ -17,7 +17,7 @@ $(document).ready(function() {
 				return Math.round((sum/records.length)*100)/100;
 			}      
         
-        var sources = ['512.jpg', 'auto'];
+        var sources = ['512.jpg', '512.jpg', 'auto'];
 
 		 function Start() {
 
@@ -124,15 +124,18 @@ $(document).ready(function() {
 
 								  avg_spd = calc_average(download_records);		                    
 		                    
-		                    if ( pos+1 ==1 && avg_spd>1 ) {
+		                    if ( pos+1 == 1 || pos+1 == 2 ) {
 		                    		
-		                    		spd_file = Math.round(avg_spd);
-										spd_file = Math.round(spd_file/5)*5 + 5;                   		
-										if(spd_file>35){ 
-											spd_file = 35 
-										}
-             		
-		                    		sources[pos+1] = spd_file.toString()+".bin";
+		                    		if(avg_spd>1){
+			                    		spd_file = Math.round(avg_spd);
+											spd_file = Math.round(spd_file/5)*5 + 5;                   		
+											if(spd_file>35){ 
+												spd_file = 35 
+											}
+			                    		sources[pos+1] = spd_file.toString()+".bin";
+										}else {
+											sources[pos+1] = sources[0];
+										}	                    		
 		                    		TestDownloadNew(pos+1);
 		                    		
 		                    }else {
